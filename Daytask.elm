@@ -6,6 +6,7 @@ import Date exposing (Date)
 import Task
 import HeroList exposing (HeroList)
 import Date.Extra.Duration
+import List.Extra exposing (..)
 
 type Model
   = Loading
@@ -93,7 +94,7 @@ update message model =
             newTemporaryModel = { temporaryModel | newTask = "" }
             newTask = Task newTaskTitle model.dirty.current.day model.dirty.current.day
             dayModel = model.dirty.current
-            newDayModel = { dayModel | tasks = newTask :: dayModel.tasks }
+            newDayModel = { dayModel | tasks = append dayModel.tasks newTask }
             dirty = model.dirty
             newDirty = { dirty | current = newDayModel }
           in

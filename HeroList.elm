@@ -1,5 +1,7 @@
 module HeroList exposing (HeroList, singleton, previousOrCreate, nextOrCreate)
 
+import List.Extra exposing (..)
+
 type alias HeroList a =
   { before : List a
   , current : a
@@ -45,9 +47,3 @@ next list =
         (List.drop 1 list.after)
     Nothing ->
       list
-
-dropLast list =
-  List.reverse list |> List.drop 1 |> List.reverse
-
-append list object =
-  List.append list <| List.singleton object
